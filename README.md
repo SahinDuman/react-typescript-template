@@ -1,46 +1,149 @@
-# Getting Started with Create React App
+**Prerequisites**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Yarn installed (`brew install yarn`)
+- VS code
+  - Install the Eslint extension
+  - Install the Prettier extension, and set it to format on save
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+**Three steps setup**
 
-### `yarn start`
+1. Clone the repo: [https://github.com/qasase/platform2](https://github.com/qasase/platform2/pulls)
+2. `cd` into the project directory and install the dependencies: `yarn`
+3. Run the app: `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+####My prefered conventions
 
-### `yarn test`
+**Naming things**
+As always with naming, please think about the reader and put a lot of effort to get it good.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Variables
+  - They should be self-descriptive, avoid abbreviations
+  - Example: `const carColor = 'red'`
+- Variables storing components
+  - Please use Pascal-case
+  - Example: `let Conversation = <SomeComponent />`
+- File-level constants
+  - Use screaming snake case (all capital letters)
+  - Example: `const MINUTES = 45`
+- Boolean values
+  - Use prefixes like "is", "has" or "should"
+  - For plural, use prefixes like "isAny", "isEvery"
+  - Examples: `let isCarVisible` `let isAnyCarVisible` `let isEveryCarVisible`
+- Functions
+  - Try to tell what the function is doing by giving the function name a verb as prefix
+  - Example: `const getFormattedNumber = () ⇒ {}`
 
-### `yarn build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Named parameters**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Prefer naming the parameters. It's an easy opportunity to be extra clear to the reader what's going on.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Even if TS offers great info about possible arguments, most of the time you have to interact with the editor to get this info.
 
-### `yarn eject`
+```jsx
+// OK
+const something = (car, driver) => {}
+something('Volvo', 'Hans')
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+// Better
+const something = ({ car, driver }) => {}
+something({ car: 'Volvo', driver: 'Hans' })
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**React**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Try to write idiomatic React, i.e. follow conventions (kind of) and not being _too_ inventive.
+- Try to avoid too big components (i.e. > ~250 LOC). The main reason for this restriction is to make it easy for the reader to quickly grasp what's going, as well as a forcing factor to use composition / write declaratively.
 
-## Learn More
+**Components last**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Avoid putting any code below the component definition in a file. Styling, functions, types etc all sit in-between all imports and the component.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
+
+**Custom hooks for readability**
+
+Whenever your `useEffect` or similar hook start to get big or complex, don't hesitate to make it a custom hook which gives you the opportunity to name it.
+
+```jsx
+// before
+function Example() {
+  useEffect(() => {
+    document.title = new Date().toLocaleDateString()
+  }, [])
+  return null
+}
+
+// after
+const useSetTodaysDateInTitle = () => {
+  useEffect(() => {
+    document.title = new Date().toLocaleDateString()
+  }, [])
+}
+
+function Example() {
+  useSetTodaysDateInTitle()
+  return null
+}
+```
+
+**Checking if variable equals any of multiple values**
+
+In the cases when a variable could equal any of 2 or more values, consider `includes` over the OR operator:
+
+```jsx
+// OK
+if (myVariable === someValue || myVariable === otherValue || myVariable === thirdValue) {
+}
+
+// Perhaps slightly better
+if ([someValue, otherValue, thirdValue].includes(myVariable)) {
+}
+```
+
+---
+
+**Type alias**
+
+- Prefer type alias over of inlining the types, particularly when we have more than two parameters / props.
+- The above is for both readability and re-usability reasons.
+
+---
+
+###Preferred tools
+
+**VS Code**
+
+- General tip: hide the sidebar and learn all necessary shortcuts to work without a mouse/trackpad
+- Must-have extensions:
+  - Eslint
+  - Prettier
+  - GitLens
+- Nice-to-have extensions
+  - Bracket Pair Colorizer 2
+  - Turbo Console Log
+  - Subtle Match Brackets
+  - Highlight Matching Tag
+  - Image Preview
+  - Version lens
+  - Settings Sync
+  - CSS in JS
+  - Lorem Ipsum
+  - Apollo GraphQL
+
+**Technologies / libraries**
+
+- GraphQL
+  - Apollo
+- Axios
+- i18next
+- query-string
+- react-router-last-location
+- styled-components
