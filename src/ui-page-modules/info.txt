@@ -1,0 +1,7 @@
+Components belonging to specifik views. 
+The folder structure here should mirror the components in 
+the pages folder. 
+
+For example: 
+* Home 
+    * main-title.tsx

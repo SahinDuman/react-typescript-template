@@ -1,0 +1,2 @@
+3rd party vendor setups and scripts here. 
+For example: Google-analytics

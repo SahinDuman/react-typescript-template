@@ -1,0 +1,1 @@
+Setup for data here, for example: apollo-client.ts

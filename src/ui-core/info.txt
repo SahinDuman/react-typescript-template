@@ -1,0 +1,1 @@
+Core components like "atoms" and common feature components
