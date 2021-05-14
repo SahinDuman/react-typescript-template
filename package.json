@@ -23,7 +23,7 @@
       "eslint --fix"
     ],
     "*.{js,ts,tsx}": [
-      "react-scripts test --watchAll=false --bail --findRelatedTests --env=jest-environment-jsdom-sixteen"
+      "react-scripts test --watchAll=false --bail --findRelatedTests"
     ]
   },
   "scripts": {
