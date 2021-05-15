@@ -18,6 +18,7 @@
 #### My prefered conventions
 
 **Naming things**
+
 As always with naming, please think about the reader and put a lot of effort to get it good.
 
 - Variables
