@@ -1,4 +1,4 @@
-Components belonging to specifik views. 
+Components belonging to specific views. 
 The folder structure here should mirror the components in 
 the pages folder. 
 
