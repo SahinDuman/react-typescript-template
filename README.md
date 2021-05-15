@@ -7,14 +7,6 @@
 
 ---
 
-**Three steps setup**
-
-1. Clone the repo: [https://github.com/qasase/platform2](https://github.com/qasase/platform2/pulls)
-2. `cd` into the project directory and install the dependencies: `yarn`
-3. Run the app: `yarn start`
-
----
-
 #### My prefered conventions
 
 **Naming things**
