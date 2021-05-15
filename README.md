@@ -110,7 +110,7 @@ if ([someValue, otherValue, thirdValue].includes(myVariable)) {
 
 ---
 
-###Preferred tools
+### Preferred tools
 
 **VS Code**
 
